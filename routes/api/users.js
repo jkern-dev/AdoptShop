@@ -54,7 +54,7 @@ router.post('/login', (req, res) => {
 
   if (!isValid) {
     return res.status(400).json(errors);
-  };ß
+  };
 
   User.findOne({ email })
     .then(user => {
