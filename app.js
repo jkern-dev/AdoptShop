@@ -11,8 +11,7 @@ const User = require("./models/User");
 const users = require("./routes/api/users");
 const pets = require("./routes/api/pets")
 
-mongoose
-  .connect(db, { useNewUrlParser: true })
+mongoose.connect(db, { useNewUrlParser: true })
   .then(() => console.log("connected to MongoDB"))
   .catch(err => console.log(err));
 
@@ -23,14 +22,14 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
-  const user = new User({
-    email: "jkern620@gmail.com",
-    userType: "adoptee",
-    password: "password",
-    city: "Palo Alto",
-    state: "CA",
-  });
-  user.save();
+  // const user = new User({
+  //   email: "jkern620@gmail.com",
+  //   userType: "adoptee",
+  //   password: "password",
+  //   city: "Palo Alto",
+  //   state: "CA",
+  // });
+  // user.save();
   res.send("Hello AdoptShop!");
 });
 
