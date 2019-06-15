@@ -8,6 +8,7 @@ const UserSchema = new Schema({
   },
   userType: {
     type: String,
+    default: "adoptee",
     required: true
   },
   password: {
