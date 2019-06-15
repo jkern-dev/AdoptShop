@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { receiveCurrentUser } from '../../actions/session_actions';
 // import './navbar.css';
 
 class NavBar extends React.Component {
@@ -15,11 +16,20 @@ class NavBar extends React.Component {
   }
 
   getLinks() {
-    if (this.props.loggedIn) {
+    if (this.props.loggedIn && this.props.currentUser.userType === "adoptee") {
       return (
         <div>
           <h1>Hello {this.props.currentUser.email}</h1>
-          <Link to={'/shelters'}>All Shelters</Link>
+          <Link to={'/shelters'}>Shelters</Link>
+          <Link to={'/profile'}>Profile</Link>
+          <button onClick={this.logoutUser}>Logout</button>
+        </div>
+      );
+    } else if (this.props.loggedIn && this.props.currentUser.userType === "shelter") {
+      return (
+        <div>
+          <h1>Hello {this.props.currentUser.email}</h1>
+          <Link to={'/pets'}>Pets</Link>
           <Link to={'/profile'}>Profile</Link>
           <button onClick={this.logoutUser}>Logout</button>
         </div>
@@ -37,7 +47,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <h1>Adopt Shop</h1>
+        <Link to='/'><h1>Adopt Shop</h1></Link>
         { this.getLinks() }
       </div>
     );
